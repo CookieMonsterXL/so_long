@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 10:11:32 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/02 11:05:29 by tbouma           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   gnl.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: tbouma <tbouma@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/02 10:11:32 by tbouma        #+#    #+#                 */
+/*   Updated: 2022/06/02 15:45:07 by tiemen        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft/libft.h"
 #include "includes/so_long.h"
 
-char	*recurs_read(int line_length, int *ret, int fd)
+char	*recurs_read(int line_length, int *eof_check, int fd)
 {
 	char	buff[1];
 	char	*lines;
@@ -28,14 +28,14 @@ char	*recurs_read(int line_length, int *ret, int fd)
 		if (!lines)
 			return (0);
 		lines[line_length] = 0;
-		*ret = 1;
+		*eof_check = 1;
 		if (buff[0] == 0)
-			*ret = 0;
+			*eof_check = 0;
 		return (lines);
 	}
 	else
 	{
-		lines = recurs_read(line_length + 1, ret, fd);
+		lines = recurs_read(line_length + 1, eof_check, fd);
 		lines[line_length] = buff[0];
 	}
 	return (lines);
@@ -43,9 +43,9 @@ char	*recurs_read(int line_length, int *ret, int fd)
 
 int	get_next_line(int fd, char **lines)
 {
-	int	ret;
+	int	eof_check;
 
-	ret = 1;
-	*lines = recurs_read(0, &ret, fd);
-	return (ret);
+	eof_check = 1;
+	*lines = recurs_read(0, &eof_check, fd);
+	return (eof_check);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 16:41:06 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/02 11:21:19 by tbouma           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   so_long.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: tbouma <tbouma@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/27 16:41:06 by tbouma        #+#    #+#                 */
+/*   Updated: 2022/06/02 17:00:56 by tiemen        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_long
 	int				yscreen;
 	int				x;
 	int				y;
-	int				oldx;
+	int				map_width;
 	int				collectibleparse;
 	int				exitparse;
 	int				player_x;
@@ -69,7 +69,7 @@ typedef struct s_long
 	int				heighttext[10];
 	int				actualtext;
 	unsigned int	color;
-}					t_long;
+}					t_sl;
 
 
 int	get_next_line(int fd, char **lines);

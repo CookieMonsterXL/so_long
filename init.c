@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 09:59:36 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/02 09:59:49 by tbouma           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: tbouma <tbouma@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/06/02 09:59:36 by tbouma        #+#    #+#                 */
+/*   Updated: 2022/06/02 17:01:28 by tiemen        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft/libft.h"
 #include "includes/so_long.h"
 
-void init_struct(t_long *sl)
+void init_struct(t_sl *sl)
 {
 	sl->keyboard[BACK] = 0;
 	sl->keyboard[RED_BUTTON] = 0;
