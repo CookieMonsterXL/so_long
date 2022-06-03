@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:41:06 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/02 11:21:19 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/03 14:39:46 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define RED_BUTTON 79
 # define CLOSERED 17
 
-typedef struct s_long
+typedef struct s_sl
 {
 	char			**map;
 	int				xscreen;
@@ -69,9 +69,9 @@ typedef struct s_long
 	int				heighttext[10];
 	int				actualtext;
 	unsigned int	color;
-}					t_long;
+}					t_sl;
 
-
-int	get_next_line(int fd, char **lines);
+int		get_next_line(int fd, char **lines);
+int		init_struct(t_sl *sl);
 
 #endif

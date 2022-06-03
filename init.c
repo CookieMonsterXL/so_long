@@ -6,14 +6,14 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:36 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/02 09:59:49 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/03 14:39:38 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft/libft.h"
 #include "includes/so_long.h"
 
-void init_struct(t_long *sl)
+int	init_struct(t_sl *sl)
 {
 	sl->keyboard[BACK] = 0;
 	sl->keyboard[RED_BUTTON] = 0;
