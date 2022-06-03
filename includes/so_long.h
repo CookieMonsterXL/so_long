@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:41:06 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/03 14:39:46 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/03 17:07:18 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_sl
 	int				yscreen;
 	int				x;
 	int				y;
-	int				oldx;
+	int				map_width;
 	int				collectibleparse;
 	int				exitparse;
 	int				player_x;
