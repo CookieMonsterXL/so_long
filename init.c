@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:36 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/05 14:48:13 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/05 15:20:55 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	init_struct(t_sl *sl)
 	sl->player_count = 0;
 	sl->collectibleset = 0;
 	sl->exitset = 0;
-	sl->exit_unlock = 0;
+	sl->exit_unlock = -1;
 	sl->lastplayer_x = -1;
 	sl->lastplayer_y = -1;
 	sl->mlx_ptr = NULL;
