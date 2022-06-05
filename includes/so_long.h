@@ -1,3 +1,4 @@
+#include <stdio.h>
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,26 +7,26 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:41:06 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/03 17:07:18 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/05 13:33:34 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-// # include <string.h>
 // # include <stdlib.h>
+// # include <string.h>
 // # include <stdbool.h>
 // # include <limits.h>
 # include <unistd.h>
 # include <fcntl.h>
 
-# define ADVANCE 13
-# define BACK 1
-# define RIGHT 2
-# define LEFT 0
-# define ESC 53
-# define RED_BUTTON 79
-# define CLOSERED 17
+# define ADVANCE	13
+# define BACK		1
+# define RIGHT		2
+# define LEFT		0
+# define ESC		53
+# define RED_BUTTON	79
+# define CLOSERED	17
 
 typedef struct s_sl
 {
@@ -44,8 +45,9 @@ typedef struct s_sl
 	int				collectible;
 	int				collectibletotal;
 	int				move;
-	int				playerset;
+	int				player_count;
 	int				exitset;
+	int				exit_unlock;
 	int				collectibleset;
 
 	char			*pxl;
@@ -73,5 +75,22 @@ typedef struct s_sl
 
 int		get_next_line(int fd, char **lines);
 int		init_struct(t_sl *sl);
+
+//PARSING MAP
+int		parsing(t_sl *sl, char *map_file);
+
+//MAP CHECK
+int		map_exetention_check(char *str);
+int		check_map(t_sl *sl);
+
+//INDEXING MAP
+int		index_map(t_sl *sl, char *filename);
+
+//UTILS
+void	error_mgs(char *str);
+
+//PRINT TERMINAL
+int		print_terminal(t_sl *sl, int *game_exit);
+int		game_loop(t_sl *sl, int *game_exit);
 
 #endif

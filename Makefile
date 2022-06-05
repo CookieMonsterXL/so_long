@@ -6,12 +6,13 @@
 #    By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 16:40:14 by tbouma            #+#    #+#              #
-#    Updated: 2022/06/03 14:40:27 by tbouma           ###   ########.fr        #
+#    Updated: 2022/06/05 13:22:45 by tbouma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
-OBJFILES := obj/main.o obj/gnl.o obj/init.o
+OBJFILES := obj/main.o obj/gnl.o obj/init.o obj/utils.o obj/parsing/check_map.o \
+obj/parsing/index_map.o obj/parsing/parse_map.o obj/print_terminal.o
 OBJFILES_DEBUG := 
 LIBFT := includes/libft/libft.a
 HEADERS := -I includes/libft/

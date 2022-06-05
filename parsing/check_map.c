@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   check_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tiemen <tiemen@student.codam.nl>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 18:39:31 by tiemen        #+#    #+#                 */
-/*   Updated: 2022/06/02 18:40:00 by tiemen        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 18:39:31 by tiemen            #+#    #+#             */
+/*   Updated: 2022/06/05 13:07:57 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	map_exetention_check(char *str, t_sl *sl)
+#include "../includes/libft/libft.h"
+#include "../includes/so_long.h"
+
+int	map_exetention_check(char *str)
 {
 	int	i;
 
@@ -22,11 +25,23 @@ int	map_exetention_check(char *str, t_sl *sl)
 	{
 		i = open(str, O_RDONLY);
 		if (i == -1)
-			showerror(sl, "File Name is not correct");
+			error_mgs("Error: Could not open file");
 		else
 			close(i);
 		return (0);
 	}
-	showerror(sl, "Files without .ber extension is not accepted");
+	error_mgs("Error: Files without .ber extension is not accepted");
+	return (0);
+}
+
+int	check_map(t_sl *sl)
+{
+	if (sl->player_count != 1)
+		error_mgs("Error: Need 1 player");
+	if (sl->exitset != 1)
+		error_mgs("Error: Need 1 exit");
+	if (sl->collectibletotal == 0)
+		error_mgs("Error: Need at least 1 collectable");
+	//checkthewall(sl);
 	return (0);
 }
