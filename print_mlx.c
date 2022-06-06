@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:16:24 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/06 16:53:10 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/06 17:10:36 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ void	hook(void *param)
 	t_vars	*vars;
 	char	c;
 
+	c = '0';
 	vars = param;
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
 		mlx_close_window(param);
@@ -210,8 +211,8 @@ void	hook(void *param)
 		c = 'a';
 	if (mlx_is_key_down(param, MLX_KEY_D))
 		c = 'd';
-	
-	move_player(vars->sl, c);
+	if (c == 'w' || c == 's' || c == 'a' || c == 'd')
+		move_player(vars->sl, c);
 }
 
 
