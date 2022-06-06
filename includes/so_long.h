@@ -19,6 +19,7 @@
 // # include <limits.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "MLX42/include/MLX42/MLX42.h"
 
 # define ADVANCE	13
 # define BACK		1
@@ -71,7 +72,14 @@ typedef struct s_sl
 	int				heighttext[10];
 	int				actualtext;
 	unsigned int	color;
-}					t_sl;
+	int				next_move[2];
+}	t_sl;
+
+typedef struct s_vars
+{
+	t_sl			*sl;
+	mlx_t			*mlx;
+}	t_vars;
 
 int		get_next_line(int fd, char **lines);
 int		init_struct(t_sl *sl);
@@ -92,5 +100,11 @@ void	error_mgs(char *str);
 //PRINT TERMINAL
 int		print_terminal(t_sl *sl, int *game_exit);
 int		game_loop(t_sl *sl, int *game_exit);
+
+//PRINT MLX
+int		game_loop_mlx(t_sl *sl, int *game_exit);
+
+//MOVE PAYER
+int		*move_player(t_sl *sl, int c);
 
 #endif
