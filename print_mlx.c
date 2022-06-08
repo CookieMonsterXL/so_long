@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:16:24 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/06 17:10:36 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/08 15:57:43 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,95 +17,141 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <memory.h>
-#define WIDTH 256
-#define HEIGHT 256
 
-// static int	edit_map(t_sl *sl, int *move)
-// {
-// 	int		new_pos_x;
-// 	int		new_pos_y;
+mlx_image_t		*set_collectable(t_sl *sl, mlx_t *mlx, mlx_image_t *img_map)
+{
+	int				x;
+	int				y;
+	mlx_texture_t	*tile_texture;
 
-// 	new_pos_x = move[1] + sl->player_x;
-// 	new_pos_y = move[0] + sl->player_y;
-// 	sl->map[new_pos_y][new_pos_x] = 'P';
-// 	sl->map[sl->player_y][sl->player_x] = '0';
-// 	sl->player_y = new_pos_y;
-// 	sl->player_x = new_pos_x;
-// 	return (0);
-// }
+	tile_texture = mlx_load_png("img/key_small.png");
+	img_map = mlx_texture_to_image(mlx, tile_texture);
+	y = 0;
+	while (y < sl->y)
+	{
+		x = 0;
+		while (x < sl->map_width)
+		{
+			if (sl->map[y][x] == 'C')
+				mlx_image_to_window(mlx, img_map, x * 64, y * 64);
+			x++;
+		}
+		y++;
+	}
+	return (img_map);
+}
 
-// static int	check_move(t_sl *sl, int *move)
-// {
-// 	int		new_pos_x;
-// 	int		new_pos_y;
-// 	char	new_pos;
+mlx_image_t	*set_exit_closed(t_sl *sl, mlx_t *mlx, mlx_image_t *img_map)
+{
+	int				x;
+	int				y;
+	uint32_t		xy[2];
+	mlx_texture_t	*tile_texture;
 
-// 	new_pos_x = move[1] + sl->player_x;
-// 	new_pos_y = move[0] + sl->player_y;
-// 	new_pos = sl->map[new_pos_y][new_pos_x];
-// 	if (new_pos == '0')
-// 		return (1);
-// 	else if (new_pos == 'E' && sl->exit_unlock == 1)
-// 		error_mgs("Player won!");
-// 	else if (new_pos == 'C')
-// 	{
-// 		sl->exit_unlock = 1;
-// 		return (1);
-// 	}
-// 	else if (new_pos == '1')
-// 		ft_putstr_fd("\n\tCan not move into wall\n\n", 1);
-// 	else if ((new_pos == 'E' && sl->exit_unlock == -1))
-// 		ft_putstr_fd("\n\tNeed more collectabels\n\n", 1);
-// 	return (0);
-// }
+	xy[0] = 64;
+	xy[1] = 0;
+	tile_texture = mlx_load_png("img/stone_gate.png");
+	img_map = mlx_texture_area_to_image(mlx, tile_texture, xy, sl->texture_w_h);
+	y = 0;
+	while (y < sl->y)
+	{
+		x = 0;
+		while (x < sl->map_width)
+		{
+			if (sl->map[y][x] == 'E')
+				mlx_image_to_window(mlx, img_map, x * 64, y * 64);
+			x++;
+		}
+		y++;
+	}
+	return (img_map);
+}
 
-// static int	set_move(int c, int *move)
-// {
-// 	if (c == 'w')
-// 		move[0] = -1;
-// 	else if (c == 's')
-// 		move[0] = 1;
-// 	else if (c == 'a')
-// 		move[1] = -1;
-// 	else if (c == 'd')
-// 		move[1] = 1;
-// 	else
-// 	{
-// 		ft_putstr_fd("\n\tUse WASD keys to move\n\n", 1);
-// 		return (0);
-		
-// 	}
-// 	return (1);
-// }
+mlx_image_t	*set_exit_open(t_sl *sl, mlx_t *mlx, mlx_image_t *img_map)
+{
+	int				x;
+	int				y;
+	uint32_t		xy[2];
+	mlx_texture_t	*tile_texture;
 
-// static int	*move_player(t_sl *sl, int c)
-// {
-// 	int	*move;
+	xy[0] = 0;
+	xy[1] = 0;
+	tile_texture = mlx_load_png("img/stone_gate.png");
+	img_map = mlx_texture_area_to_image(mlx, tile_texture, xy, sl->texture_w_h);
+	y = 0;
+	while (y < sl->y)
+	{
+		x = 0;
+		while (x < sl->map_width)
+		{
+			if (sl->map[y][x] == 'E')
+				mlx_image_to_window(mlx, img_map, x * 64, y * 64);
+			x++;
+		}
+		y++;
+	}
+	return (img_map);
+}
 
-// 	move = malloc(sizeof(int) * 2);
-// 	move[0] = 0;
-// 	move[1] = 0;
-// 	if (!set_move(c, move))
-// 		return (0);
-// 	if (!check_move(sl, move))
-// 		return (0);
-// 	edit_map(sl, move);
-// 	return (0);
-// }
+mlx_image_t	*set_exit_visual_2(t_vars *vars, mlx_image_t *img_map, uint32_t *xy)
+{
+	int				x;
+	int				y;
+	mlx_texture_t	*tile_texture;
 
-// int	print_terminal(t_sl *sl, int *game_exit)
-// {
-// 	int	i;
+	tile_texture = mlx_load_png("img/stone_gate.png");
+	img_map = mlx_texture_area_to_image(vars->mlx, tile_texture, xy, vars->sl->texture_w_h);
+	y = 0;
+	while (y < vars->sl->y)
+	{
+		x = 0;
+		while (x < vars->sl->map_width)
+		{
+			if (vars->sl->map[y][x] == 'E')
+				mlx_image_to_window(vars->mlx, img_map, x * 64, y * 64);
+			x++;
+		}
+		y++;
+	}
+	return (img_map);
+}
 
-// 	i = 0;
-// 	while (i < sl->y)
-// 	{
-// 		printf("%s\n", sl->map[i]);
-// 		i++;
-// 	}
-// 	*game_exit = 1;
-// 	return (0);
-// }
+mlx_image_t	*set_exit_visual(t_vars *vars, mlx_image_t *img_map)
+{
+	uint32_t xy[2];
+	int			x;
+	int			y;
+	
+	x = 0;
+	while (x < 4)
+	{
+		y = 0;
+		while (y < 4)
+		{
+			xy[0] = x * 64;
+			xy[1] = y * 64;
+			set_exit_visual_2(vars, img_map, xy);
+			y++;
+		}
+		x++;
+	}
+	return (img_map);
+}
+
+mlx_image_t	*set_exit(t_vars *vars, mlx_image_t *img_map)
+{
+	if (vars->sl->exit_unlock == -1)
+		set_exit_closed(vars->sl, vars->mlx, img_map);
+	else if (vars->sl->exit_unlock == 1 && vars->sl->exit_visual == 1)
+		set_exit_open(vars->sl, vars->mlx, img_map);
+	else if (vars->sl->exit_unlock == 1 && vars->sl->exit_visual == -1)
+	{
+		vars->sl->exit_visual = 1;
+		set_exit_visual(vars, img_map);
+	}
+	return (img_map);
+}
+
 
 mlx_image_t		*set_map(t_sl *sl, mlx_t *mlx)
 {
@@ -169,84 +215,60 @@ mlx_image_t		*set_player(t_sl *sl, mlx_t *mlx, mlx_image_t *img_map)
 {
 	int				x;
 	int				y;
-	int				i;
-	int				j;
 	mlx_texture_t	*tile_texture;
 
 	tile_texture = mlx_load_png("img/hero64.png");
 	img_map = mlx_texture_to_image(mlx, tile_texture);
-	j = 0;
 	y = 0;
-	while (j < sl->y)
+	while (y < sl->y)
 	{
-		i = 0;
 		x = 0;
-		while (i < sl->map_width)
+		while (x < sl->map_width)
 		{
-			if (sl->map[j][i] == 'P')
-				mlx_image_to_window(mlx, img_map, x, y);
-			i++;
-			x = i * 64;
+			if (sl->map[y][x] == 'P')
+				mlx_image_to_window(mlx, img_map, x * 64, y * 64);
+			x++;
 		}
-		j++;
-		y = j * 64;
+		y++;
 	}
 	return (img_map);
 }
 
-void	hook(void *param)
+void	key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_vars	*vars;
-	char	c;
-
-	c = '0';
+	t_vars *vars;
+	mlx_image_t		*img_map;
+	
 	vars = param;
-	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
-		mlx_close_window(param);
-	if (mlx_is_key_down(param, MLX_KEY_W))
-		c = 'w';
-	if (mlx_is_key_down(param, MLX_KEY_S))
-		c = 's';
-	if (mlx_is_key_down(param, MLX_KEY_A))
-		c = 'a';
-	if (mlx_is_key_down(param, MLX_KEY_D))
-		c = 'd';
-	if (c == 'w' || c == 's' || c == 'a' || c == 'd')
-		move_player(vars->sl, c);
+	if (keydata.action == MLX_PRESS)
+	{
+		printf("Key is %c\n", keydata.key);
+		move_player(vars->sl, keydata.key);
+		img_map = set_map(vars->sl, vars->mlx);
+		set_walls(vars->sl, vars->mlx, img_map);
+		set_player(vars->sl, vars->mlx, img_map);
+		set_collectable(vars->sl, vars->mlx, img_map);
+		set_exit(vars, img_map);
+	}
 }
-
 
 int	game_loop_mlx(t_sl *sl, int *game_exit)
 {
-	//mlx_t			*mlx;
 	mlx_image_t		*img_map;
 	t_vars			vars;
 
-
 	*game_exit = 1;
+	vars.sl = sl;
 	vars.mlx = mlx_init(64 * sl->map_width, 64 * sl->y, "MLX42", true);
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
 	img_map = set_map(sl, vars.mlx);
 	set_walls(sl, vars.mlx, img_map);
 	set_player(sl, vars.mlx, img_map);
-	vars.sl = sl;
-	mlx_loop_hook(vars.mlx, hook, &vars);
+	set_collectable(sl, vars.mlx, img_map);
+	set_exit(&vars, img_map);
+	mlx_key_hook(vars.mlx, key_hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);
 	return (EXIT_SUCCESS);
-
-	
-	// int	c;
-
-	// print_terminal(sl, game_exit);
-	// while (1)
-	// {
-	// 	c = getchar();
-	// 	if (c == '\n')
-	// 		continue ;
-	// 	//printf("char is= %c\n", c); 
-	// 	move_player(sl, c);
-	// 	print_terminal(sl, game_exit);
-	// }
 }

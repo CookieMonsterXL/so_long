@@ -45,11 +45,14 @@ typedef struct s_sl
 	int				lastplayer_y;
 	int				collectible;
 	int				collectibletotal;
+	int				collected;
 	int				move;
 	int				player_count;
 	int				exitset;
 	int				exit_unlock;
+	int				exit_visual;
 	int				collectibleset;
+	uint32_t		texture_w_h[2];
 
 	char			*pxl;
 	int				bpp;

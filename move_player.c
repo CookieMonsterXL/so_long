@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   move_player.key                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:58:37 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/06 16:10:41 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/08 13:56:51 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static int	edit_map(t_sl *sl, int *move)
 	return (0);
 }
 
+int	check_collectable(t_sl *sl)
+{
+	sl->collected++;
+	//printf("col_total = %d colected = %d\n", sl->collectibletotal, sl->collected);
+	if (sl->collected == sl->collectibletotal)
+		sl->exit_unlock = 1;
+	return (0);
+}
+
 static int	check_move(t_sl *sl, int *move)
 {
 	int		new_pos_x;
@@ -42,7 +51,7 @@ static int	check_move(t_sl *sl, int *move)
 		error_mgs("Player won!");
 	else if (new_pos == 'C')
 	{
-		sl->exit_unlock = 1;
+		check_collectable(sl);
 		return (1);
 	}
 	else if (new_pos == '1')
@@ -52,15 +61,15 @@ static int	check_move(t_sl *sl, int *move)
 	return (0);
 }
 
-static int	set_move(int c, int *move)
+static int	set_move(int key, int *move)
 {
-	if (c == 'w')
+	if (key == 'W')
 		move[0] = -1;
-	else if (c == 's')
+	else if (key == 'S')
 		move[0] = 1;
-	else if (c == 'a')
+	else if (key == 'A')
 		move[1] = -1;
-	else if (c == 'd')
+	else if (key == 'D')
 		move[1] = 1;
 	else
 	{
@@ -70,17 +79,17 @@ static int	set_move(int c, int *move)
 	return (1);
 }
 
-int	*move_player(t_sl *sl, int c)
+int	*move_player(t_sl *sl, int key)
 {
-	int	*move;
+	//int	*move;
 
-	move = malloc(sizeof(int) * 2);
-	move[0] = 0;
-	move[1] = 0;
-	if (!set_move(c, move))
+	//move = malloc(sizeof(int) * 2);
+	sl->next_move[0] = 0;
+	sl->next_move[1] = 0;
+	if (!set_move(key, sl->next_move))
 		return (0);
-	if (!check_move(sl, move))
+	if (!check_move(sl, sl->next_move))
 		return (0);
-	edit_map(sl, move);
+	edit_map(sl, sl->next_move);
 	return (0);
 }
