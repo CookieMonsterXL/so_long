@@ -76,6 +76,20 @@ typedef struct s_sl
 	int				actualtext;
 	unsigned int	color;
 	int				next_move[2];
+
+	mlx_texture_t	*ground_texture;
+	mlx_texture_t	*tree_texture;
+	mlx_texture_t	*hero_texture;
+	mlx_texture_t	*key_texture;
+	mlx_texture_t	*exit_open_texture;
+	mlx_texture_t	*exit_close_texture;
+
+	mlx_image_t		*ground_img;
+	mlx_image_t		*tree_img;
+	mlx_image_t		*hero_img;
+	mlx_image_t		*key_img;
+	mlx_image_t		*exit_open_img;
+	mlx_image_t		*exit_close_img;
 }	t_sl;
 
 typedef struct s_vars
@@ -109,5 +123,10 @@ int		game_loop_mlx(t_sl *sl, int *game_exit);
 
 //MOVE PAYER
 int		*move_player(t_sl *sl, int c);
+
+//SET TEXTURE
+int	init_mlx_map(t_vars *vars);
+int	set_ground(t_vars *vars);
+int	set_trees(t_vars *vars);
 
 #endif

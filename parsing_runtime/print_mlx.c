@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:16:24 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/09 10:46:00 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/09 14:39:48 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ mlx_image_t		*set_map(t_sl *sl, mlx_t *mlx)
 		while (i < sl->x)
 		{
 			i++;
-			mlx_image_to_window(mlx, img_map, x, y);
+			/*int index = */mlx_image_to_window(mlx, img_map, x, y);
+			//img_map->instances[index].
 			x = i * 64;
 		}
 		j++;
@@ -237,24 +238,24 @@ mlx_image_t		*set_player(t_sl *sl, mlx_t *mlx, mlx_image_t *img_map)
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_vars *vars;
-	mlx_image_t		*img_map;
+	//mlx_image_t		*img_map;
 	
 	vars = param;
 	if (keydata.action == MLX_PRESS)
 	{
 		printf("Key is %c\n", keydata.key);
 		move_player(vars->sl, keydata.key);
-		img_map = set_map(vars->sl, vars->mlx);
-		set_walls(vars->sl, vars->mlx, img_map);
-		set_player(vars->sl, vars->mlx, img_map);
-		set_collectable(vars->sl, vars->mlx, img_map);
-		set_exit(vars, img_map);
+		// img_map = set_map(vars->sl, vars->mlx);
+		// set_walls(vars->sl, vars->mlx, img_map);
+		// set_player(vars->sl, vars->mlx, img_map);
+		// set_collectable(vars->sl, vars->mlx, img_map);
+		// set_exit(vars, img_map);
 	}
 }
 
 int	game_loop_mlx(t_sl *sl, int *game_exit)
 {
-	mlx_image_t		*img_map;
+	//mlx_image_t		*img_map;
 	t_vars			vars;
 
 	*game_exit = 1;
@@ -262,11 +263,13 @@ int	game_loop_mlx(t_sl *sl, int *game_exit)
 	vars.mlx = mlx_init(64 * sl->map_width, 64 * sl->y, "MLX42", true);
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
-	img_map = set_map(sl, vars.mlx);
-	set_walls(sl, vars.mlx, img_map);
-	set_player(sl, vars.mlx, img_map);
-	set_collectable(sl, vars.mlx, img_map);
-	set_exit(&vars, img_map);
+	//set_textures(&vars);
+	//img_map = set_map(sl, vars.mlx);
+	init_mlx_map(&vars);
+	// set_walls(sl, vars.mlx, img_map);
+	// set_player(sl, vars.mlx, img_map);
+	// set_collectable(sl, vars.mlx, img_map);
+	// set_exit(&vars, img_map);
 	mlx_key_hook(vars.mlx, key_hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);
