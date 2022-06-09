@@ -102,7 +102,7 @@ void	error_mgs(char *str);
 
 //PRINT TERMINAL
 int		print_terminal(t_sl *sl, int *game_exit);
-int		game_loop(t_sl *sl, int *game_exit);
+int		game_loop_terinal(t_sl *sl, int *game_exit);
 
 //PRINT MLX
 int		game_loop_mlx(t_sl *sl, int *game_exit);

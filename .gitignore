@@ -1,5 +1,6 @@
 .vscode/
 so_long
+.DS_Store
 
 # Prerequisites
 *.d

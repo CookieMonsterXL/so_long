@@ -6,14 +6,14 @@
 #    By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 16:40:14 by tbouma            #+#    #+#              #
-#    Updated: 2022/06/06 16:10:24 by tbouma           ###   ########.fr        #
+#    Updated: 2022/06/09 10:45:22 by tbouma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
-OBJFILES := obj/main.o obj/gnl.o obj/init.o obj/utils.o obj/parsing/check_map.o \
-obj/parsing/index_map.o obj/parsing/parse_map.o obj/print_terminal.o obj/print_mlx.o \
-obj/move_player.o
+OBJFILES := obj/main.o obj/utils/gnl.o obj/utils/init.o obj/utils/utils.o obj/parsing_init/check_map.o \
+obj/parsing_init/index_map.o obj/parsing_init/parse_map.o obj/parsing_runtime/print_mlx.o \
+obj/parsing_runtime/move_player.o #obj/parsing_runtime/print_terminal.o 
 OBJFILES_DEBUG := 
 LIBFT := includes/libft/libft.a
 LIBMLX := includes/MLX42/libmlx42.a

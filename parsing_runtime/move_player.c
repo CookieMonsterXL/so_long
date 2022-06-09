@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft/libft.h"
-#include "includes/so_long.h"
+#include "../includes/libft/libft.h"
+#include "../includes/so_long.h"
 
 static int	edit_map(t_sl *sl, int *move)
 {
@@ -63,13 +63,14 @@ static int	check_move(t_sl *sl, int *move)
 
 static int	set_move(int key, int *move)
 {
-	if (key == 'W')
+	//printf("key is+ %c\n", key);
+	if (key == 'W' || key == 'w')
 		move[0] = -1;
-	else if (key == 'S')
+	else if (key == 'S' || key == 's')
 		move[0] = 1;
-	else if (key == 'A')
+	else if (key == 'A' || key == 'a')
 		move[1] = -1;
-	else if (key == 'D')
+	else if (key == 'D' || key == 'd')
 		move[1] = 1;
 	else
 	{
@@ -81,9 +82,6 @@ static int	set_move(int key, int *move)
 
 int	*move_player(t_sl *sl, int key)
 {
-	//int	*move;
-
-	//move = malloc(sizeof(int) * 2);
 	sl->next_move[0] = 0;
 	sl->next_move[1] = 0;
 	if (!set_move(key, sl->next_move))

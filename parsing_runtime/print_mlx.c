@@ -6,13 +6,13 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:16:24 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/08 15:57:43 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/09 10:46:00 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft/libft.h"
-#include "includes/so_long.h"
-#include "includes/MLX42/include/MLX42/MLX42.h"
+#include "../includes/libft/libft.h"
+#include "../includes/so_long.h"
+#include "../includes/MLX42/include/MLX42/MLX42.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -93,62 +93,62 @@ mlx_image_t	*set_exit_open(t_sl *sl, mlx_t *mlx, mlx_image_t *img_map)
 	return (img_map);
 }
 
-mlx_image_t	*set_exit_visual_2(t_vars *vars, mlx_image_t *img_map, uint32_t *xy)
-{
-	int				x;
-	int				y;
-	mlx_texture_t	*tile_texture;
+// mlx_image_t	*set_exit_visual_2(t_vars *vars, mlx_image_t *img_map, uint32_t *xy)
+// {
+// 	int				x;
+// 	int				y;
+// 	mlx_texture_t	*tile_texture;
 
-	tile_texture = mlx_load_png("img/stone_gate.png");
-	img_map = mlx_texture_area_to_image(vars->mlx, tile_texture, xy, vars->sl->texture_w_h);
-	y = 0;
-	while (y < vars->sl->y)
-	{
-		x = 0;
-		while (x < vars->sl->map_width)
-		{
-			if (vars->sl->map[y][x] == 'E')
-				mlx_image_to_window(vars->mlx, img_map, x * 64, y * 64);
-			x++;
-		}
-		y++;
-	}
-	return (img_map);
-}
+// 	tile_texture = mlx_load_png("img/stone_gate.png");
+// 	img_map = mlx_texture_area_to_image(vars->mlx, tile_texture, xy, vars->sl->texture_w_h);
+// 	y = 0;
+// 	while (y < vars->sl->y)
+// 	{
+// 		x = 0;
+// 		while (x < vars->sl->map_width)
+// 		{
+// 			if (vars->sl->map[y][x] == 'E')
+// 				mlx_image_to_window(vars->mlx, img_map, x * 64, y * 64);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	return (img_map);
+// }
 
-mlx_image_t	*set_exit_visual(t_vars *vars, mlx_image_t *img_map)
-{
-	uint32_t xy[2];
-	int			x;
-	int			y;
+// mlx_image_t	*set_exit_visual(t_vars *vars, mlx_image_t *img_map)
+// {
+// 	uint32_t xy[2];
+// 	int			x;
+// 	int			y;
 	
-	x = 0;
-	while (x < 4)
-	{
-		y = 0;
-		while (y < 4)
-		{
-			xy[0] = x * 64;
-			xy[1] = y * 64;
-			set_exit_visual_2(vars, img_map, xy);
-			y++;
-		}
-		x++;
-	}
-	return (img_map);
-}
+// 	x = 0;
+// 	while (x < 4)
+// 	{
+// 		y = 0;
+// 		while (y < 4)
+// 		{
+// 			xy[0] = x * 64;
+// 			xy[1] = y * 64;
+// 			set_exit_visual_2(vars, img_map, xy);
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// 	return (img_map);
+// }
 
 mlx_image_t	*set_exit(t_vars *vars, mlx_image_t *img_map)
 {
 	if (vars->sl->exit_unlock == -1)
 		set_exit_closed(vars->sl, vars->mlx, img_map);
-	else if (vars->sl->exit_unlock == 1 && vars->sl->exit_visual == 1)
+	else if (vars->sl->exit_unlock == 1)// && vars->sl->exit_visual == 1)
 		set_exit_open(vars->sl, vars->mlx, img_map);
-	else if (vars->sl->exit_unlock == 1 && vars->sl->exit_visual == -1)
-	{
-		vars->sl->exit_visual = 1;
-		set_exit_visual(vars, img_map);
-	}
+	// else if (vars->sl->exit_unlock == 1 && vars->sl->exit_visual == -1)
+	// {
+	// 	vars->sl->exit_visual = 1;
+	// 	set_exit_visual(vars, img_map);
+	// }
 	return (img_map);
 }
 

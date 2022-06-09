@@ -6,12 +6,12 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 13:25:38 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/06 16:28:26 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/09 10:46:16 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft/libft.h"
-#include "includes/so_long.h"
+#include "../includes/libft/libft.h"
+#include "../includes/so_long.h"
 
 int	print_terminal(t_sl *sl, int *game_exit)
 {
@@ -27,7 +27,7 @@ int	print_terminal(t_sl *sl, int *game_exit)
 	return (0);
 }
 
-int	game_loop(t_sl *sl, int *game_exit)
+int	game_loop_terinal(t_sl *sl, int *game_exit)
 {
 	int	c;
 
@@ -37,7 +37,6 @@ int	game_loop(t_sl *sl, int *game_exit)
 		c = getchar();
 		if (c == '\n')
 			continue ;
-		//printf("char is= %c\n", c); 
 		move_player(sl, c);
 		print_terminal(sl, game_exit);
 	}

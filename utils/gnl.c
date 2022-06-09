@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   gnl.c                                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tbouma <tbouma@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/06/02 10:11:32 by tbouma        #+#    #+#                 */
-/*   Updated: 2022/06/02 15:45:07 by tiemen        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   gnl.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/02 10:11:32 by tbouma            #+#    #+#             */
+/*   Updated: 2022/06/09 10:45:03 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft/libft.h"
-#include "includes/so_long.h"
+#include "../includes/libft/libft.h"
+#include "../includes/so_long.h"
 
 char	*recurs_read(int line_length, int *eof_check, int fd)
 {
