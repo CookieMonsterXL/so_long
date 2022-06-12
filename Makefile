@@ -6,14 +6,14 @@
 #    By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 16:40:14 by tbouma            #+#    #+#              #
-#    Updated: 2022/06/09 14:26:12 by tbouma           ###   ########.fr        #
+#    Updated: 2022/06/12 16:34:12 by tbouma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
-OBJFILES := obj/main.o obj/utils/gnl.o obj/utils/init.o obj/utils/utils.o obj/parsing_init/check_map.o \
-obj/parsing_init/index_map.o obj/parsing_init/parse_map.o obj/parsing_runtime/print_mlx.o \
-obj/parsing_runtime/move_player.o obj/parsing_runtime/init_mlx_map.o obj/parsing_runtime/set_map.o#obj/parsing_runtime/print_terminal.o 
+OBJFILES := obj/main_mlx_loop_hook.o obj/utils/gnl.o obj/utils/init.o obj/utils/utils.o obj/parsing_map/check_map.o \
+obj/parsing_map/index_map.o obj/parsing_map/parse_map.o \
+obj/parsing_runtime/move_player.o obj/setup_mlx/init_mlx_map.o obj/mlx_runtime/set_map.o  obj/mlx_runtime/edit_map.o obj/utils/print_terminal.o 
 OBJFILES_DEBUG := 
 LIBFT := includes/libft/libft.a
 LIBMLX := includes/MLX42/libmlx42.a

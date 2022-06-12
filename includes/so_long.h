@@ -115,8 +115,8 @@ int		index_map(t_sl *sl, char *filename);
 void	error_mgs(char *str);
 
 //PRINT TERMINAL
-int		print_terminal(t_sl *sl, int *game_exit);
-int		game_loop_terinal(t_sl *sl, int *game_exit);
+int	print_terminal(t_vars *vars, int *game_exit);
+int	game_loop_terinal(t_vars *vars, int *game_exit);
 
 //PRINT MLX
 int		game_loop_mlx(t_sl *sl, int *game_exit);
