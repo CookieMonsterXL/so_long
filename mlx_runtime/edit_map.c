@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 16:34:23 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/12 16:40:41 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/12 17:34:34 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,37 @@
 int	edit_exit(t_vars *vars)
 {
 	vars->sl->exit_edit_check = 1;
-	mlx_delete_image(vars->mlx, vars->sl->exit_close_img);
+	mlx_delete_image(vars->mlx, vars->sl->e_c_img);
 	set_exit_open(vars);
 	return (0);
+}
+
+int	set_exit_closed(t_vars *vars)
+{
+	int				x;
+	int				y;
+	int				index;
+
+	y = 0;
+	while (y < vars->sl->map_lines)
+	{
+		x = 0;
+		while (x < vars->sl->map_rows)
+		{
+			if (vars->sl->map[y][x] == 'E')
+			{
+				x *= 64;
+				y *= 64;
+				index = mlx_image_to_window(vars->mlx, vars->sl->e_c_img, x, y);
+				vars->sl->e_c_img->instances[index].z = 4;
+				x /= 64;
+				y /= 64;
+			}
+			x++;
+		}
+		y++;
+	}
+	return (index);
 }
 
 int	edit_collectable(t_vars *vars)
@@ -29,10 +57,10 @@ int	edit_collectable(t_vars *vars)
 
 	y = 0;
 	index = 0;
-	while (y < vars->sl->y)
+	while (y < vars->sl->map_lines)
 	{
 		x = 0;
-		while (x < vars->sl->map_width)
+		while (x < vars->sl->map_rows)
 		{
 			if (vars->sl->map[y][x] == 'C')
 			{
@@ -53,15 +81,15 @@ int	move_hero_mlx(t_vars *vars)
 	int				y;
 
 	y = 0;
-	while (y < vars->sl->y)
+	while (y < vars->sl->map_lines)
 	{
 		x = 0;
-		while (x < vars->sl->map_width)
+		while (x < vars->sl->map_rows)
 		{
 			if (vars->sl->map[y][x] == 'P')
 			{
-				vars->sl->hero_img->instances->x = x * 64;
-				vars->sl->hero_img->instances->y = y * 64;
+				vars->sl->her_img->instances->x = x * 64;
+				vars->sl->her_img->instances->y = y * 64;
 			}
 			x++;
 		}
@@ -69,3 +97,4 @@ int	move_hero_mlx(t_vars *vars)
 	}
 	return (0);
 }
+

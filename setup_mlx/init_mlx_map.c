@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 12:17:03 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/12 16:38:41 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/12 16:57:43 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	set_textures(t_vars *vars)
 int	set_img(t_vars *vars)
 {
 	vars->sl->ground_img = mlx_texture_to_image(vars->mlx, vars->sl->ground_texture);
-	vars->sl->tree_img = mlx_texture_to_image(vars->mlx, vars->sl->tree_texture);
-	vars->sl->hero_img = mlx_texture_to_image(vars->mlx, vars->sl->hero_texture);
+	vars->sl->tre_img = mlx_texture_to_image(vars->mlx, vars->sl->tree_texture);
+	vars->sl->her_img = mlx_texture_to_image(vars->mlx, vars->sl->hero_texture);
 	vars->sl->key_img = mlx_texture_to_image(vars->mlx, vars->sl->key_texture);
-	vars->sl->exit_open_img = mlx_texture_to_image(vars->mlx, vars->sl->exit_open_texture);
-	vars->sl->exit_close_img = mlx_texture_to_image(vars->mlx, vars->sl->exit_close_texture);
+	vars->sl->e_o_img = mlx_texture_to_image(vars->mlx, vars->sl->exit_open_texture);
+	vars->sl->e_c_img = mlx_texture_to_image(vars->mlx, vars->sl->exit_close_texture);
 	return (0);
 }
 

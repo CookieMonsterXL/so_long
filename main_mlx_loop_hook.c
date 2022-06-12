@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:34:14 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/12 16:38:29 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/12 17:34:34 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	game_loop_mlx(t_sl *sl, int *game_exit)
 
 	*game_exit = 1;
 	vars.sl = sl;
-	vars.mlx = mlx_init(64 * sl->map_width, 64 * sl->y, "MLX42", true);
+	vars.mlx = mlx_init(64 * sl->map_rows, 64 * sl->map_lines, "MLX42", true);
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
 	init_mlx_map(&vars);

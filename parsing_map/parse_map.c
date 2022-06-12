@@ -20,14 +20,27 @@ int	map_malloc(t_sl *sl)
 	int	i;
 
 	i = 0;
-	sl->map = malloc(sizeof(char *) * sl->y);
-	while (i < sl->y)
+	sl->map = malloc(sizeof(char *) * sl->map_lines + 1);
+	while (i < sl->map_lines)
 	{
-		sl->map[i] = malloc(sizeof(char) * (sl->x + 1));
+		sl->map[i] = malloc(sizeof(char) * (sl->map_rows + 1));
+		sl->map[i][sl->map_rows] = '\0';
 		i++;
 	}
+	sl->map[sl->map_lines] = NULL;
 	//sl->maptofree = 1;
 	return (1);
+}
+
+int	set_w_h_2(t_sl *sl, char *line, int fd, int ret)
+{
+	sl->new_line_width = ft_strlen(line);
+	if (sl->new_line_width != sl->map_rows)
+		error_mgs("Map is not rectangular");
+	if (ret != -1)
+		free(line);
+	sl->map_lines++;
+	return (get_next_line(fd, &line));
 }
 
 int	get_width_and_height(t_sl *sl, char *map_file)
@@ -38,25 +51,22 @@ int	get_width_and_height(t_sl *sl, char *map_file)
 
 	fd = open(map_file, O_RDONLY);
 	ret = get_next_line(fd, &line);
-	//printf("%s\n", line);
-	sl->map_width = ft_strlen(line);
-	while (line[0] == '1')
+	sl->map_rows = ft_strlen(line);
+	while (ret == 1)//(line[0] == '1')
 	{
-		sl->x = ft_strlen(line);
-		if (sl->x != sl->map_width)
-			error_mgs("Map is not rectangular");
-		sl->map_width = sl->x;
-		if (ret != -1)
-			free(line);
-		ret = get_next_line(fd, &line);
-		//printf("%s\n", line);
-		sl->y++;
+		ret = set_w_h_2(sl, line, fd, ret);
 	}
-	if (sl->y == 0 || sl->x == 0)
-		error_mgs("Map is not correct or not well formated");
-	// sl->yscreen = sl->y * 64;
+	ret = set_w_h_2(sl, line, fd, ret);
+
+	// sl->new_line_width = ft_strlen(line);
+	// if (sl->new_line_width != sl->map_rows)
+	// 	error_mgs("Map is not rectangular");
+	// sl->map_rows = sl->new_line_width;
+	// if (ret != -1)
+	// 	free(line);
+	// ret = get_next_line(fd, &line);
+	// sl->map_lines++;
 	free(line);
-	// sl->xscreen = sl->x * 64;
 	close(fd);
 	return (0);
 }
@@ -65,6 +75,9 @@ int	parsing(t_sl *sl, char *map_file)
 {
 	map_exetention_check(map_file);
 	get_width_and_height(sl, map_file);
+
+	printf("row = %d , lines = %d\n", sl->map_rows, sl->map_lines);
+
 	map_malloc(sl);
 	index_map(sl, map_file);
 	check_map(sl);

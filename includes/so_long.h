@@ -32,13 +32,11 @@
 typedef struct s_sl
 {
 	char			**map;
-	int				xscreen;
-	int				yscreen;
-	int				x;
-	int				y;
-	int				map_width;
-	int				collectibleparse;
-	int				exitparse;
+
+	int				new_line_width;
+	int				map_lines;
+	int				map_rows;
+
 	int				player_x;
 	int				player_y;
 	int				lastplayer_x;
@@ -46,35 +44,13 @@ typedef struct s_sl
 	int				collectible;
 	int				collectibletotal;
 	int				collected;
-	int				move;
+
 	int				player_count;
 	int				exitset;
 	int				exit_unlock;
 	int				exit_edit_check;
 	int				collectibleset;
-	uint32_t		texture_w_h[2];
 
-	char			*pxl;
-	int				bpp;
-	int				s_line;
-	double			casetotal;
-	double			casein;
-	int				ed;
-	void			*mlx_ptr;
-	void			*mlx_win;
-	void			*img;
-	int				keyboard[70000];
-	int				maptofree;
-
-	int				bpp_text[10];
-	int				sline_text[10];
-	int				ed_text[10];
-	char			*ptr_text[10];
-	void			*text[10];
-	int				widthtext[10];
-	int				heighttext[10];
-	int				actualtext;
-	unsigned int	color;
 	int				next_move[2];
 
 	mlx_texture_t	*ground_texture;
@@ -85,11 +61,11 @@ typedef struct s_sl
 	mlx_texture_t	*exit_close_texture;
 
 	mlx_image_t		*ground_img;
-	mlx_image_t		*tree_img;
-	mlx_image_t		*hero_img;
+	mlx_image_t		*tre_img;
+	mlx_image_t		*her_img;
 	mlx_image_t		*key_img;
-	mlx_image_t		*exit_open_img;
-	mlx_image_t		*exit_close_img;
+	mlx_image_t		*e_o_img;
+	mlx_image_t		*e_c_img;
 }	t_sl;
 
 typedef struct s_vars

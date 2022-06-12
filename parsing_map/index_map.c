@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 12:30:26 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/05 13:02:59 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/12 17:54:25 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	index_line(t_sl *sl, char *line, int num)
 	int	index;
 
 	index = 0;
-	while (line[index])
+	while (line[index] != '\0')//(line[index])
 	{
-		sl->casetotal++;
+		//sl->casetotal++;
 		sl->map[num][index] = line[index];
 		if (line[index] == 'P')
 		{
@@ -50,7 +50,7 @@ int	index_map(t_sl *sl, char *filename)
 	num = 0;
 	fd = open(filename, O_RDONLY);
 	ret = get_next_line(fd, &line);
-	while (line[0] == '1')
+	while (num < sl->map_lines)//(line[0] == '1')
 	{
 		index_line(sl, line, num);
 		if (ret != -1)

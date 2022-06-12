@@ -6,12 +6,33 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:39:31 by tiemen            #+#    #+#             */
-/*   Updated: 2022/06/05 13:07:57 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/12 18:08:47 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft/libft.h"
 #include "../includes/so_long.h"
+
+int	check_walls(t_sl *sl)
+{
+	int	i;
+
+	i = 0;
+	while (i < sl->map_rows)
+	{
+		if (sl->map[0][i] != '1' || sl->map[sl->map_lines - 1][i] != '1')
+			error_mgs("Error: sids of map are not wall");
+		i++;
+	}
+	i = 0;
+	while (i < sl->map_lines)
+	{
+		if (sl->map[i][0] != '1' || sl->map[i][sl->map_rows - 1] != '1')
+			error_mgs("Error: sids of map are not wall");
+		i++;
+	}
+	return (0);
+}
 
 int	map_exetention_check(char *str)
 {
@@ -42,6 +63,8 @@ int	check_map(t_sl *sl)
 		error_mgs("Error: Need 1 exit");
 	if (sl->collectibletotal == 0)
 		error_mgs("Error: Need at least 1 collectable");
-	//checkthewall(sl);
+	if (sl->map_lines == 0 || sl->new_line_width == 0)
+		error_mgs("Map is not correct or not well formated");
+	check_walls(sl);
 	return (0);
 }

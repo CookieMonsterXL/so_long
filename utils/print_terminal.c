@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 13:25:38 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/12 16:31:35 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/12 17:34:34 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	print_terminal(t_vars *vars, int *game_exit)
 	int	i;
 
 	i = 0;
-	while (i < vars->sl->y)
+	while (i < vars->sl->map_lines)
 	{
 		printf("%s\n", vars->sl->map[i]);
 		i++;
