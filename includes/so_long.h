@@ -50,7 +50,7 @@ typedef struct s_sl
 	int				player_count;
 	int				exitset;
 	int				exit_unlock;
-	int				exit_visual;
+	int				exit_edit_check;
 	int				collectibleset;
 	uint32_t		texture_w_h[2];
 
@@ -122,11 +122,20 @@ int		game_loop_terinal(t_sl *sl, int *game_exit);
 int		game_loop_mlx(t_sl *sl, int *game_exit);
 
 //MOVE PAYER
-int		*move_player(t_sl *sl, int c);
+int		*move_player(t_vars *vars, int key);
 
 //SET TEXTURE
 int	init_mlx_map(t_vars *vars);
-int	set_ground(t_vars *vars);
-int	set_trees(t_vars *vars);
 
+//SET IMG
+int		set_ground(t_vars *vars);
+int		set_trees(t_vars *vars);
+int		set_hero(t_vars *vars);
+int		set_collectable(t_vars *vars);
+int		set_exit_closed(t_vars *vars);
+
+int		move_hero_mlx(t_vars *vars);
+int		edit_collectable(t_vars *vars);
+int		edit_exit(t_vars *vars);
+int	set_exit_open(t_vars *vars);
 #endif

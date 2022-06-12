@@ -36,27 +36,37 @@ int	check_collectable(t_sl *sl)
 	return (0);
 }
 
-static int	check_move(t_sl *sl, int *move)
+int	remove_collectable_mlx(t_vars *vars)
+{
+	int	remove;
+
+	remove = vars->sl->collectibletotal - vars->sl->collected;
+	vars->sl->key_img->instances[remove].z = -1;
+	return (0);
+}
+
+static int	check_move(t_vars *vars, int *move)
 {
 	int		new_pos_x;
 	int		new_pos_y;
 	char	new_pos;
 
-	new_pos_x = move[1] + sl->player_x;
-	new_pos_y = move[0] + sl->player_y;
-	new_pos = sl->map[new_pos_y][new_pos_x];
+	new_pos_x = move[1] + vars->sl->player_x;
+	new_pos_y = move[0] + vars->sl->player_y;
+	new_pos = vars->sl->map[new_pos_y][new_pos_x];
 	if (new_pos == '0')
 		return (1);
-	else if (new_pos == 'E' && sl->exit_unlock == 1)
+	else if (new_pos == 'E' && vars->sl->exit_unlock == 1)
 		error_mgs("Player won!");
 	else if (new_pos == 'C')
 	{
-		check_collectable(sl);
+		check_collectable(vars->sl);
+		remove_collectable_mlx(vars);
 		return (1);
 	}
 	else if (new_pos == '1')
 		ft_putstr_fd("\n\tCan not move into wall\n\n", 1);
-	else if ((new_pos == 'E' && sl->exit_unlock == -1))
+	else if ((new_pos == 'E' && vars->sl->exit_unlock == -1))
 		ft_putstr_fd("\n\tNeed more collectabels\n\n", 1);
 	return (0);
 }
@@ -80,14 +90,14 @@ static int	set_move(int key, int *move)
 	return (1);
 }
 
-int	*move_player(t_sl *sl, int key)
+int	*move_player(t_vars *vars, int key)
 {
-	sl->next_move[0] = 0;
-	sl->next_move[1] = 0;
-	if (!set_move(key, sl->next_move))
+	vars->sl->next_move[0] = 0;
+	vars->sl->next_move[1] = 0;
+	if (!set_move(key, vars->sl->next_move))
 		return (0);
-	if (!check_move(sl, sl->next_move))
+	if (!check_move(vars, vars->sl->next_move))
 		return (0);
-	edit_map(sl, sl->next_move);
+	edit_map(vars->sl, vars->sl->next_move);
 	return (0);
 }

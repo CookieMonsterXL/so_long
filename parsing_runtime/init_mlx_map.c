@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 12:17:03 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/09 14:44:07 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/12 15:55:30 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	set_textures(t_vars *vars)
 int	set_img(t_vars *vars)
 {
 	vars->sl->ground_img = mlx_texture_to_image(vars->mlx, vars->sl->ground_texture);
+	//vars->sl->ground_img->instances[0].z = 1;
 	vars->sl->tree_img = mlx_texture_to_image(vars->mlx, vars->sl->tree_texture);
 	vars->sl->hero_img = mlx_texture_to_image(vars->mlx, vars->sl->hero_texture);
 	vars->sl->key_img = mlx_texture_to_image(vars->mlx, vars->sl->key_texture);
@@ -44,9 +45,9 @@ int	init_map(t_vars *vars)
 {
 	set_ground(vars);
 	set_trees(vars);
-	// set_hero(vars);
-	// set_collectable(vars);
-	// set_exit(vars);
+	set_hero(vars);
+	set_collectable(vars);
+	set_exit_closed(vars);
 	return (0);
 }
 
