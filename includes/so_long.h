@@ -39,17 +39,14 @@ typedef struct s_sl
 
 	int				player_x;
 	int				player_y;
-	int				lastplayer_x;
-	int				lastplayer_y;
-	int				collectible;
-	int				collectibletotal;
+
+	int				collectable_total;
 	int				collected;
 
 	int				player_count;
 	int				exitset;
 	int				exit_unlock;
 	int				exit_edit_check;
-	int				collectibleset;
 
 	int				next_move[2];
 
@@ -74,11 +71,14 @@ typedef struct s_vars
 	mlx_t			*mlx;
 }	t_vars;
 
+//UTILS
 int		get_next_line(int fd, char **lines);
-int		init_struct(t_sl *sl);
+void	error_mgs(char *str);
+int		init_struct(t_vars *vars);
+void	free_map(t_vars *vars);
 
 //PARSING MAP
-int		parsing(t_sl *sl, char *map_file);
+int		parsing_map(t_vars *vars, char *map_file);
 
 //MAP CHECK
 int		map_exetention_check(char *str);
@@ -87,21 +87,20 @@ int		check_map(t_sl *sl);
 //INDEXING MAP
 int		index_map(t_sl *sl, char *filename);
 
-//UTILS
-void	error_mgs(char *str);
-
 //PRINT TERMINAL
-int	print_terminal(t_vars *vars, int *game_exit);
-int	game_loop_terinal(t_vars *vars, int *game_exit);
+int		print_terminal(t_vars *vars);
+int		game_loop_terinal(t_vars *vars);
 
 //PRINT MLX
-int		game_loop_mlx(t_sl *sl, int *game_exit);
+int		game_loop_mlx(t_vars *vars);
 
 //MOVE PAYER
 int		*move_player(t_vars *vars, int key);
+int		check_collectable(t_sl *sl);
+int		remove_collectable_mlx(t_vars *vars);
 
 //SET TEXTURE
-int	init_mlx_map(t_vars *vars);
+int		init_mlx_map(t_vars *vars);
 
 //SET IMG
 int		set_ground(t_vars *vars);
@@ -113,5 +112,5 @@ int		set_exit_closed(t_vars *vars);
 int		move_hero_mlx(t_vars *vars);
 int		edit_collectable(t_vars *vars);
 int		edit_exit(t_vars *vars);
-int	set_exit_open(t_vars *vars);
+int		set_exit_open(t_vars *vars);
 #endif

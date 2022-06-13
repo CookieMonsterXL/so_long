@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_terminal.c                                   :+:      :+:    :+:   */
+/*   edit_collectables.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 13:25:38 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:20:56 by tbouma           ###   ########.fr       */
+/*   Created: 2022/06/13 13:18:42 by tbouma            #+#    #+#             */
+/*   Updated: 2022/06/13 13:25:43 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft/libft.h"
 #include "../includes/so_long.h"
 
-int	print_terminal(t_vars *vars)
+int	check_collectable(t_sl *sl)
 {
-	int	i;
-
-	i = 0;
-	while (i < vars->sl->map_lines)
-	{
-		printf("%s\n", vars->sl->map[i]);
-		i++;
-	}
+	sl->collected++;
+	if (sl->collected == sl->collectable_total)
+		sl->exit_unlock = 1;
 	return (0);
 }
 
-int	game_loop_terinal(t_vars *vars)
+int	remove_collectable_mlx(t_vars *vars)
 {
-	int	c;
+	int	remove;
 
-	print_terminal(vars);
-	while (1)
-	{
-		c = getchar();
-		if (c == '\n')
-			continue ;
-		move_player(vars, c);
-		print_terminal(vars);
-	}
+	remove = vars->sl->collectable_total - vars->sl->collected;
+	vars->sl->key_img->instances[remove].z = -1;
+	return (0);
 }

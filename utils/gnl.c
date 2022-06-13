@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:11:32 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/12 18:03:51 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/13 12:15:12 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*recurs_read(int line_length, int *eof_check, int fd)
 		lines = malloc(sizeof(char) * line_length + 1);
 		if (!lines)
 			return (0);
-		lines[line_length] = 0;
+		lines[line_length] = '\0';
 		*eof_check = 1;
 		if (buff[0] == 0)
 			*eof_check = 0;

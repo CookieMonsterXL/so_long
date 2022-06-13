@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:39:31 by tiemen            #+#    #+#             */
-/*   Updated: 2022/06/12 18:08:47 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/13 11:17:09 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	check_walls(t_sl *sl)
 	while (i < sl->map_rows)
 	{
 		if (sl->map[0][i] != '1' || sl->map[sl->map_lines - 1][i] != '1')
-			error_mgs("Error: sids of map are not wall");
+			error_mgs("Error: sides of map are not wall");
 		i++;
 	}
 	i = 0;
 	while (i < sl->map_lines)
 	{
 		if (sl->map[i][0] != '1' || sl->map[i][sl->map_rows - 1] != '1')
-			error_mgs("Error: sids of map are not wall");
+			error_mgs("Error: sides of map are not wall");
 		i++;
 	}
 	return (0);
@@ -61,7 +61,7 @@ int	check_map(t_sl *sl)
 		error_mgs("Error: Need 1 player");
 	if (sl->exitset != 1)
 		error_mgs("Error: Need 1 exit");
-	if (sl->collectibletotal == 0)
+	if (sl->collectable_total == 0)
 		error_mgs("Error: Need at least 1 collectable");
 	if (sl->map_lines == 0 || sl->new_line_width == 0)
 		error_mgs("Map is not correct or not well formated");

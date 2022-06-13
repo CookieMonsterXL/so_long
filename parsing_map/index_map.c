@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 12:30:26 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/12 17:54:25 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/13 13:16:45 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ static int	index_line(t_sl *sl, char *line, int num)
 	int	index;
 
 	index = 0;
-	while (line[index] != '\0')//(line[index])
+	while (line[index] != '\0')
 	{
-		//sl->casetotal++;
 		sl->map[num][index] = line[index];
 		if (line[index] == 'P')
 		{
@@ -31,12 +30,13 @@ static int	index_line(t_sl *sl, char *line, int num)
 		if (line[index] == 'E')
 			sl->exitset++;
 		if (line[index] == 'C')
-			sl->collectibletotal++;
+			sl->collectable_total++;
 		if (line[index] != 'P' && line[index] != 'E' && line[index]
 			!= 'C' && line[index] != '1' && line[index] != '0')
 			error_mgs("Error: Wrong character in map");
 		index++;
 	}
+	line[index] = '\0';
 	return (0);
 }
 
@@ -50,15 +50,16 @@ int	index_map(t_sl *sl, char *filename)
 	num = 0;
 	fd = open(filename, O_RDONLY);
 	ret = get_next_line(fd, &line);
-	while (num < sl->map_lines)//(line[0] == '1')
+	while (num < sl->map_lines)
 	{
 		index_line(sl, line, num);
-		if (ret != -1)
+		if (ret != 0)
 			free(line);
 		ret = get_next_line(fd, &line);
 		num++;
 	}
-	free(line);
+	if (ret != 0)
+		free(line);
 	close(fd);
 	return (0);
 }

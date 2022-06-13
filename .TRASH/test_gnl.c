@@ -6,12 +6,12 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:09:25 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/02 11:25:06 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/13 11:57:28 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
-#include "includes/libft/libft.h"
+#include "../includes/so_long.h"
+#include "../includes/libft/libft.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -24,11 +24,13 @@ int	main(void)
 	int		ret;
 
 	ret = 1;
-	fd = open("main.c", O_RDONLY);
+	fd = open("main_mlx_loop_hook.c", O_RDONLY);
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &lines);
 		printf("%s\n", lines);
+		free(lines);
 	}
-
+	system("leaks a.out");
 }
+//gcc .TRASH/test_gnl.c utils/gnl.c -fsanitize=address -g3

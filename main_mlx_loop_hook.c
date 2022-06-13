@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:34:14 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/12 17:34:34 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/13 13:11:59 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_vars *vars;
-	
+	t_vars	*vars;
+
 	vars = param;
 	if (keydata.action == MLX_PRESS)
 	{
@@ -30,36 +30,36 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 }
 
-int	game_loop_mlx(t_sl *sl, int *game_exit)
+int	game_loop_mlx(t_vars *vars)
 {
-	t_vars			vars;
-
-	*game_exit = 1;
-	vars.sl = sl;
-	vars.mlx = mlx_init(64 * sl->map_rows, 64 * sl->map_lines, "MLX42", true);
-	if (!vars.mlx)
+	vars->mlx = mlx_init(64 * vars->sl->map_rows, 64
+			* vars->sl->map_lines, "MLX42", true);
+	if (!vars->mlx)
 		exit(EXIT_FAILURE);
-	init_mlx_map(&vars);
-	mlx_key_hook(vars.mlx, key_hook, &vars);
-	mlx_loop(vars.mlx);
-	mlx_terminate(vars.mlx);
+	init_mlx_map(vars);
+	mlx_key_hook(vars->mlx, key_hook, vars);
+	mlx_loop(vars->mlx);
+	mlx_terminate(vars->mlx);
 	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
 {
+	t_vars	vars;
 	t_sl	sl;
-	int		game_exit;
+	int		exit_status;
 
-	game_exit = 1;
-	init_struct(&sl);
+	vars.sl = &sl;
+	init_struct(&vars);
 	if (argc == 1)
 		error_mgs("Error: No map");
 	if (argc > 2)
 		error_mgs("Error: Too many arguments");
-	parsing(&sl, argv[1]);
-	game_loop_mlx(&sl, &game_exit);
+	parsing_map(&vars, argv[1]);
+	exit_status = game_loop_mlx(&vars);
+	exit(exit_status);
 	return (0);
 }
 
+	//system("leaks so_long");
 	//game_loop_terinal(&sl, &game_exit);

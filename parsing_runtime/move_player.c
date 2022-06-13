@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.key                                      :+:      :+:    :+:   */
+/*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:58:37 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/08 13:56:51 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/13 13:19:07 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,6 @@ static int	edit_map(t_sl *sl, int *move)
 	sl->map[sl->player_y][sl->player_x] = '0';
 	sl->player_y = new_pos_y;
 	sl->player_x = new_pos_x;
-	return (0);
-}
-
-int	check_collectable(t_sl *sl)
-{
-	sl->collected++;
-	//printf("col_total = %d colected = %d\n", sl->collectibletotal, sl->collected);
-	if (sl->collected == sl->collectibletotal)
-		sl->exit_unlock = 1;
-	return (0);
-}
-
-int	remove_collectable_mlx(t_vars *vars)
-{
-	int	remove;
-
-	remove = vars->sl->collectibletotal - vars->sl->collected;
-	vars->sl->key_img->instances[remove].z = -1;
 	return (0);
 }
 
@@ -73,7 +55,6 @@ static int	check_move(t_vars *vars, int *move)
 
 static int	set_move(int key, int *move)
 {
-	//printf("key is+ %c\n", key);
 	if (key == 'W' || key == 'w')
 		move[0] = -1;
 	else if (key == 'S' || key == 's')
