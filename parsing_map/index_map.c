@@ -6,12 +6,27 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 12:30:26 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:16:45 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 15:43:29 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft/libft.h"
 #include "../includes/so_long.h"
+
+void	check_set_player(t_sl *sl, char *line, int num, int index)
+{
+	if (line[index] == 'P')
+	{
+		sl->player_count++;
+		if (sl->player_count > 1)
+			sl->map[num][index] = '0';
+		if (sl->player_count == 1)
+		{
+			sl->player_x = index;
+			sl->player_y = num;
+		}
+	}
+}
 
 static int	index_line(t_sl *sl, char *line, int num)
 {
@@ -21,12 +36,7 @@ static int	index_line(t_sl *sl, char *line, int num)
 	while (line[index] != '\0')
 	{
 		sl->map[num][index] = line[index];
-		if (line[index] == 'P')
-		{
-			sl->player_count++;
-			sl->player_x = index;
-			sl->player_y = num;
-		}
+		check_set_player(sl, line, num, index);
 		if (line[index] == 'E')
 			sl->exitset++;
 		if (line[index] == 'C')

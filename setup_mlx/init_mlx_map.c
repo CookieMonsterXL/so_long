@@ -6,13 +6,12 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 12:17:03 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:28:24 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:17:59 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft/libft.h"
 #include "../includes/so_long.h"
-// #include "../includes/MLX42/include/MLX42/MLX42.h"
 
 int	set_textures(t_vars *vars)
 {

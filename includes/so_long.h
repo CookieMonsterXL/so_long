@@ -1,4 +1,3 @@
-#include <stdio.h>
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:41:06 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/05 13:33:34 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:17:13 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +19,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "MLX42/include/MLX42/MLX42.h"
-
-# define ADVANCE	13
-# define BACK		1
-# define RIGHT		2
-# define LEFT		0
-# define ESC		53
-# define RED_BUTTON	79
-# define CLOSERED	17
 
 typedef struct s_sl
 {
@@ -49,6 +40,8 @@ typedef struct s_sl
 	int				exit_edit_check;
 
 	int				next_move[2];
+	int				move_counter;
+	int				player_won;
 
 	mlx_texture_t	*ground_texture;
 	mlx_texture_t	*tree_texture;
@@ -76,20 +69,17 @@ int		get_next_line(int fd, char **lines);
 void	error_mgs(char *str);
 int		init_struct(t_vars *vars);
 void	free_map(t_vars *vars);
+void	player_won(t_vars *vars);
 
 //PARSING MAP
 int		parsing_map(t_vars *vars, char *map_file);
-
-//MAP CHECK
+int		index_map(t_sl *sl, char *filename);
 int		map_exetention_check(char *str);
 int		check_map(t_sl *sl);
 
-//INDEXING MAP
-int		index_map(t_sl *sl, char *filename);
-
 //PRINT TERMINAL
-int		print_terminal(t_vars *vars);
-int		game_loop_terinal(t_vars *vars);
+// int		print_terminal(t_vars *vars);
+// int		game_loop_terminal(t_vars *vars);
 
 //PRINT MLX
 int		game_loop_mlx(t_vars *vars);
@@ -113,4 +103,5 @@ int		move_hero_mlx(t_vars *vars);
 int		edit_collectable(t_vars *vars);
 int		edit_exit(t_vars *vars);
 int		set_exit_open(t_vars *vars);
+int		set_exit_closed(t_vars *vars);
 #endif

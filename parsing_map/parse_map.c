@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 11:25:04 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:16:57 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 15:47:49 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ int	map_malloc(t_sl *sl)
 int	set_w_h_2(t_sl *sl, char **line, int fd, int ret)
 {
 	sl->new_line_width = ft_strlen(*line);
+	if (*line[0] != '1' && *line[0] != '0'
+		&& *line[0] != 'P' && *line[0] != 'C' && *line[0] != 'E')
+		error_mgs("Error: wrong use of characters in mapfile");
 	if (sl->new_line_width != sl->map_rows)
-		error_mgs("Error: Map is not rectangular");
+		error_mgs("Error: Map is not rectangular or wrong character use");
 	if (ret != 0)
 		free(*line);
 	sl->map_lines++;

@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:34:14 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:11:59 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:04:37 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,15 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	vars = param;
 	if (keydata.action == MLX_PRESS)
 	{
-		printf("Key is %c\n", keydata.key);
+		if (vars->sl->player_won == 1)
+		{
+			if (keydata.key == MLX_KEY_ESCAPE)
+				exit(1);
+			return ;
+		}
 		move_player(vars, keydata.key);
+		if (vars->sl->player_won == 1)
+			player_won(vars);
 		move_hero_mlx(vars);
 		edit_collectable(vars);
 		if (vars->sl->exit_unlock == 1 && vars->sl->exit_edit_check == 0)
@@ -62,4 +69,4 @@ int	main(int argc, char **argv)
 }
 
 	//system("leaks so_long");
-	//game_loop_terinal(&sl, &game_exit);
+	//game_loop_terminal(&sl, &game_exit);

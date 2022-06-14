@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:39:31 by tiemen            #+#    #+#             */
-/*   Updated: 2022/06/13 11:17:09 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 15:46:34 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int	map_exetention_check(char *str)
 
 int	check_map(t_sl *sl)
 {
-	if (sl->player_count != 1)
-		error_mgs("Error: Need 1 player");
-	if (sl->exitset != 1)
-		error_mgs("Error: Need 1 exit");
+	if (sl->player_count < 1)
+		error_mgs("Error: Need a player");
+	if (sl->exitset < 1)
+		error_mgs("Error: Need at least one exit");
 	if (sl->collectable_total == 0)
-		error_mgs("Error: Need at least 1 collectable");
+		error_mgs("Error: Need at least one collectable");
 	if (sl->map_lines == 0 || sl->new_line_width == 0)
 		error_mgs("Map is not correct or not well formated");
 	check_walls(sl);

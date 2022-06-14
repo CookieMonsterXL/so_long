@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 16:34:23 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:16:16 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 14:59:36 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	edit_exit(t_vars *vars)
 	return (0);
 }
 
-int	set_exit_closed(t_vars *vars)
+int	set_exit_open(t_vars *vars)
 {
 	int				x;
 	int				y;
-	int				index;
+	int				i;
 
 	y = 0;
 	while (y < vars->sl->map_lines)
@@ -37,8 +37,8 @@ int	set_exit_closed(t_vars *vars)
 			{
 				x *= 64;
 				y *= 64;
-				index = mlx_image_to_window(vars->mlx, vars->sl->e_c_img, x, y);
-				vars->sl->e_c_img->instances[index].z = 4;
+				i = mlx_image_to_window(vars->mlx, vars->sl->e_o_img, x, y);
+				vars->sl->e_o_img->instances[i].z = 4;
 				x /= 64;
 				y /= 64;
 			}
@@ -46,7 +46,7 @@ int	set_exit_closed(t_vars *vars)
 		}
 		y++;
 	}
-	return (index);
+	return (i);
 }
 
 int	edit_collectable(t_vars *vars)

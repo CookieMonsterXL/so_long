@@ -6,18 +6,18 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 13:52:01 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:16:22 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 14:59:24 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft/libft.h"
 #include "../includes/so_long.h"
 
-int	set_exit_open(t_vars *vars)
+int	set_exit_closed(t_vars *vars)
 {
 	int				x;
 	int				y;
-	int				i;
+	int				index;
 
 	y = 0;
 	while (y < vars->sl->map_lines)
@@ -29,8 +29,8 @@ int	set_exit_open(t_vars *vars)
 			{
 				x *= 64;
 				y *= 64;
-				i = mlx_image_to_window(vars->mlx, vars->sl->e_o_img, x, y);
-				vars->sl->e_o_img->instances[i].z = 4;
+				index = mlx_image_to_window(vars->mlx, vars->sl->e_c_img, x, y);
+				vars->sl->e_c_img->instances[index].z = 4;
 				x /= 64;
 				y /= 64;
 			}
@@ -38,7 +38,7 @@ int	set_exit_open(t_vars *vars)
 		}
 		y++;
 	}
-	return (i);
+	return (index);
 }
 
 int	set_collectable(t_vars *vars)

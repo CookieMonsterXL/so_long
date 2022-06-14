@@ -6,7 +6,7 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:58:37 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/13 13:19:07 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:10:35 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static int	edit_map(t_sl *sl, int *move)
 	sl->map[sl->player_y][sl->player_x] = '0';
 	sl->player_y = new_pos_y;
 	sl->player_x = new_pos_x;
+	sl->move_counter++;
+	ft_putstr_fd("Legal moves total:\t", 1);
+	ft_putnbr_fd(sl->move_counter, 1);
+	ft_putchar_fd('\n', 1);
 	return (0);
 }
 
@@ -39,7 +43,10 @@ static int	check_move(t_vars *vars, int *move)
 	if (new_pos == '0')
 		return (1);
 	else if (new_pos == 'E' && vars->sl->exit_unlock == 1)
-		error_mgs("Player won!");
+	{
+		vars->sl->player_won = 1;
+		return (1);
+	}
 	else if (new_pos == 'C')
 	{
 		check_collectable(vars->sl);
@@ -63,6 +70,8 @@ static int	set_move(int key, int *move)
 		move[1] = -1;
 	else if (key == 'D' || key == 'd')
 		move[1] = 1;
+	else if (key == MLX_KEY_ESCAPE)
+		exit(0);
 	else
 	{
 		ft_putstr_fd("\n\tUse WASD keys to move\n\n", 1);
