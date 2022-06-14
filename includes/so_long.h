@@ -6,16 +6,12 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:41:06 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/14 16:17:13 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:32:16 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-// # include <stdlib.h>
-// # include <string.h>
-// # include <stdbool.h>
-// # include <limits.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include "MLX42/include/MLX42/MLX42.h"

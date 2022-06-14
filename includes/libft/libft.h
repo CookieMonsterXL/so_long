@@ -6,15 +6,13 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:29:32 by tbouma            #+#    #+#             */
-/*   Updated: 2022/05/27 12:59:17 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:35:20 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <string.h>
 # include <stdlib.h>
-# include <stdbool.h>
 # include <limits.h>
 
 /*
