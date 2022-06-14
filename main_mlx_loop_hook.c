@@ -6,13 +6,12 @@
 /*   By: tbouma <tbouma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:34:14 by tbouma            #+#    #+#             */
-/*   Updated: 2022/06/14 16:04:37 by tbouma           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:50:31 by tbouma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft/libft.h"
 #include "includes/so_long.h"
-//#include "includes/MLX42/include/MLX42/MLX42.h"
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
